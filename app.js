@@ -9,7 +9,7 @@ function secondsToTime(inputSeconds) {
     const months = Math.floor(inputSeconds / secondsInAmonth);
     
     // Extract weeks
-    const weeks = Math.floor((inputSeconds/ secondsInAweek) / 4.34524);
+    const weeks = Math.floor((inputSeconds/ secondsInAweek) % 4.34524);
     
     // Extract days
     const days = Math.floor((inputSeconds / secondsInADay) % 7);
@@ -39,10 +39,21 @@ function secondsToTime(inputSeconds) {
     
     for (const key in sections) {
       const value = sections[key];
-      timeParts.push(`${value} ${key}${value == 1 ? '' : 's'}`);
+      if(value) {
+        timeParts.push(`${value} ${key}${value > 1 ? 's' : ''}`);
+      }
     }
 
     return timeParts.join(', ');
 }
 
-console.log(secondsToTime(10000000));
+const testCase = [
+  60, //1 minute
+  3600, //1 hour
+  86400, //1 day
+  604800, //1 week
+  2628000, //1 month
+  10000000, // 3 months... 3weeks....
+]
+
+testCase.map(item => console.log(secondsToTime(item)));
