@@ -9,10 +9,10 @@ function secondsToTime(inputSeconds) {
     const months = Math.floor(inputSeconds / secondsInAmonth);
     
     // Extract weeks
-    const weeks = Math.floor(inputSeconds/ secondsInAweek);
+    const weeks = Math.floor((inputSeconds/ secondsInAweek) / 4.34524);
     
     // Extract days
-    const days = Math.floor(inputSeconds / secondsInADay) % 7;
+    const days = Math.floor((inputSeconds / secondsInADay) % 7);
     
     // Extract hours
     const hourSeconds = inputSeconds % secondsInADay;
